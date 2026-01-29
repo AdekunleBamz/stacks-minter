@@ -15,36 +15,43 @@ import NFTMinter from './NFTMinter.jsx'
 const Dashboard = () => {
   const { isConnected, userData, isLoading, error } = useStacks()
 
-  const stats = [
-    {
-      name: 'Total NFTs Minted',
-      value: '1,234',
-      change: '+12%',
-      icon: Award,
-      color: 'text-purple-600'
-    },
-    {
-      name: 'Total Volume',
-      value: '123.45 STX',
-      change: '+8.5%',
-      icon: DollarSign,
-      color: 'text-green-600'
-    },
-    {
-      name: 'Active Users',
-      value: '567',
-      change: '+24%',
-      icon: Users,
-      color: 'text-blue-600'
-    },
-    {
-      name: 'Market Cap',
-      value: '2,345 STX',
-      change: '-2.1%',
-      icon: TrendingUp,
-      color: 'text-orange-600'
-    }
-  ]
+const statBgClasses = {
+  'text-purple-600': 'bg-purple-100',
+  'text-green-600': 'bg-green-100',
+  'text-blue-600': 'bg-blue-100',
+  'text-orange-600': 'bg-orange-100',
+};
+
+const stats = [
+  {
+    name: 'Total NFTs Minted',
+    value: '1,234',
+    change: '+12%',
+    icon: Award,
+    color: 'text-purple-600'
+  },
+  {
+    name: 'Total Volume',
+    value: '123.45 STX',
+    change: '+8.5%',
+    icon: DollarSign,
+    color: 'text-green-600'
+  },
+  {
+    name: 'Active Users',
+    value: '567',
+    change: '+24%',
+    icon: Users,
+    color: 'text-blue-600'
+  },
+  {
+    name: 'Market Cap',
+    value: '2,345 STX',
+    change: '-2.1%',
+    icon: TrendingUp,
+    color: 'text-orange-600'
+  }
+]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -74,8 +81,8 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="card">
+          {stats.map((stat) => (
+            <div key={stat.name} className="card">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">
@@ -88,7 +95,7 @@ const Dashboard = () => {
                     {stat.change}
                   </p>
                 </div>
-                <div className={`w-12 h-12 bg-${stat.color.replace('text-', '').replace('-600', '')}-100 rounded-full flex items-center justify-center`}>
+                <div className={`w-12 h-12 ${statBgClasses[stat.color] || 'bg-gray-100'} rounded-full flex items-center justify-center`}>
                   <stat.icon className={`w-6 h-6 ${stat.color}`} />
                 </div>
               </div>
