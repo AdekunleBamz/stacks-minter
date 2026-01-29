@@ -1,0 +1,52 @@
+# Environment variables
+.env*
+!.env.example
+
+# Clarinet settings with mnemonics
+settings/*.toml
+!settings/Devnet.toml.example
+!settings/Testnet.toml.example
+!settings/Mainnet.toml.example
+
+# Dependencies
+**/node_modules/
+
+# Production builds
+dist/
+build/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary folders
+tmp/
+temp/

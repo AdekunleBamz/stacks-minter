@@ -1,0 +1,63 @@
+{
+  "name": "stacks-nft-minter",
+  "version": "1.0.0",
+  "description": "NFT Minter on Stacks Blockchain - 0.1 STX per mint",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write src/"
+  },
+  "keywords": [
+    "stacks",
+    "nft",
+    "blockchain",
+    "clarity",
+    "stx"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@stacks/connect": "^7.0.0",
+    "@stacks/transactions": "^4.0.0",
+    "@stacks/blockchain-api-client": "^2.0.0",
+    "@stacks/auth": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1",
+    "wagmi": "^2.2.2",
+    "@wagmi/core": "^2.2.2",
+    "viem": "^2.0.0",
+    "axios": "^1.6.2",
+    "lucide-react": "^0.294.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vitejs/plugin-react": "^4.1.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/stacks-nft-minter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/stacks-nft-minter/issues"
+  },
+  "homepage": "https://github.com/yourusername/stacks-nft-minter#readme"
+}

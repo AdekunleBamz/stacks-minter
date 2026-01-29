@@ -1,0 +1,22 @@
+[project]
+name = "stacks-nft-minter"
+description = "NFT Minter on Stacks Blockchain - 0.1 STX per mint"
+authors = ["Your Name"]
+email = ""
+explicit_format = "Clarity2"
+
+[contracts]
+nft-collection = "contracts/nft-collection.clar"
+
+[provider]
+format = "raw"
+
+[provider.clarinet]
+costs_version = 1
+epochs = "3.3"
+
+[replace-by-fee]
+base-fee = 1000
+
+[simulations]
+replace-by-fee = true
