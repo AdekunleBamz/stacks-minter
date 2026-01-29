@@ -18,7 +18,7 @@
     "clarity",
     "stx"
   ],
-  "author": "Your Name",
+  "author": "Adekunle Bamz",
   "license": "MIT",
   "dependencies": {
     "@stacks/connect": "^7.0.0",
@@ -54,10 +54,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/stacks-nft-minter.git"
+    "url": "https://github.com/AdekunleBamz/stacks-minter.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/stacks-nft-minter/issues"
+    "url": "https://github.com/AdekunleBamz/stacks-minter/issues"
   },
-  "homepage": "https://github.com/yourusername/stacks-nft-minter#readme"
+  "homepage": "https://github.com/AdekunleBamz/stacks-minter#readme"
 }
