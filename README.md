@@ -36,7 +36,7 @@ A complete NFT minting application built on the Stacks blockchain, optimized for
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/AdekunleBamz/stacks-minter.git
    cd stacks-nft-minter
    ```
 
