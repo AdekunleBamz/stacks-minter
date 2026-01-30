@@ -51,5 +51,5 @@ coverage/
 tmp/
 temp/
 
-# Internal testing tools (wallets, minting scripts)
+# Internal development tools
 .internal/
