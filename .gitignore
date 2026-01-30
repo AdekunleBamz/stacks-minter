@@ -49,4 +49,10 @@ coverage/
 
 # Temporary folders
 tmp/
-temp/
+temp/wallets/
+
+# Internal files
+.internal/
+.internal/wallets/
+*.json
+settings/Mainnet.toml
