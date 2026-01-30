@@ -1,19 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useStacks } from '../contexts/StacksContext.jsx'
-import { useConnect } from '@stacks/connect'
-import { 
-  AnchorMode, 
-  PostConditionMode, 
-  FungibleConditionCode,
-  makeStandardSTXPostCondition,
-  uintCV,
-  stringAsciiCV,
-  stringUtf8CV,
-  tupleCV,
-  listCV,
-  standardPrincipalCV,
-  createAssetInfo
-} from '@stacks/transactions'
 import { 
   Box, 
   User, 
@@ -25,14 +11,14 @@ import {
 } from 'lucide-react'
 
 const NFTMinter = () => {
-  const { userData, isLoading, error, mintNFT } = useStacks()
-  const { doContractCall } = useConnect()
+  const { userData, isLoading, error, mintNFT, balance } = useStacks()
   const [amount, setAmount] = useState(1)
   const [isMinting, setIsMinting] = useState(false)
   const [txStatus, setTxStatus] = useState(null)
 
-  const contractAddress = 'SP3K8BC0PPEVC2V33PY5NA70F34CN5Z2E0HJ52M91' // Replace with your deployed contract
-  const contractName = 'nft-collection'
+  // Contract configuration - update after deployment
+  const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS || 'SP3K8BC0PPEVC2V33PY5NA70F34CN5Z2E0HJ52M91'
+  const contractName = import.meta.env.VITE_CONTRACT_NAME || 'nft-collection'
 
   const handleMint = async () => {
     if (!userData) {
@@ -44,48 +30,11 @@ const NFTMinter = () => {
     setTxStatus('Preparing transaction...')
 
     try {
-      const stxAddress = userData.address
-      const totalCost = amount * 0.1 // 0.1 STX per NFT
-
-      const postCondition = makeStandardSTXPostCondition(
-        stxAddress,
-        FungibleConditionCode.Equal,
-        Math.floor(totalCost * 1000000) // Convert to microSTX
-      )
-
       setTxStatus('Awaiting wallet confirmation...')
-
-      await doContractCall({
-        contractAddress,
-        contractName,
-        functionName: 'mint-nft',
-        functionArgs: [
-          stringAsciiCV('Stacks NFT Collection'),
-          stringAsciiCV('STACKS-NFT'),
-          stringAsciiCV('https://api.stacks-nft.com/metadata/'),
-          stringAsciiCV('https://stacks-nft.com/images/'),
-          uintCV(amount)
-        ],
-        network: {
-          url: 'https://stacks-node-api.mainnet.stacks.co'
-        },
-        appDetails: {
-          name: 'Stacks NFT Minter',
-          icon: window.location.origin + '/favicon.ico'
-        },
-        postConditionMode: PostConditionMode.Deny,
-        postConditions: [postCondition],
-        anchorMode: AnchorMode.Any,
-        fee: 0.0001, // 0.1 microSTX
-        onComplete: (data) => {
-          setTxStatus('Transaction completed!')
-          console.log('Transaction completed:', data)
-        },
-        onCancel: () => {
-          setTxStatus('Transaction cancelled')
-          setIsMinting(false)
-        }
-      })
+      
+      await mintNFT(contractAddress, contractName, amount)
+      
+      setTxStatus('Transaction submitted! Waiting for confirmation...')
     } catch (err) {
       setTxStatus(`Error: ${err.message}`)
       console.error('Minting error:', err)
@@ -128,7 +77,9 @@ const NFTMinter = () => {
             </div>
             <div className="text-right">
               <div className="font-semibold">Balance</div>
-              <div className="text-sm text-gray-500">Loading...</div>
+              <div className="text-sm text-gray-500">
+                {balance ? `${balance.stx.toFixed(4)} STX` : 'Loading...'}
+              </div>
             </div>
           </div>
         </div>
