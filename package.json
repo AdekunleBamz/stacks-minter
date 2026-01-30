@@ -41,7 +41,7 @@
     "react-hot-toast": "^2.6.0",
     "react-router-dom": "^6.20.1",
     "tailwind-merge": "^2.0.0",
-    "viem": "^2.0.0",
+    "viem": "^2.45.1",
     "wagmi": "^2.2.2"
   },
   "devDependencies": {
