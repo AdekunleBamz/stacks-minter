@@ -1,6 +1,7 @@
 {
   "name": "stacks-nft-minter",
   "version": "1.0.0",
+  "type": "module",
   "description": "NFT Minter on Stacks Blockchain - 0.1 STX per mint",
   "main": "index.js",
   "scripts": {
@@ -9,7 +10,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "deploy": "node scripts/deploy-contract.js",
+    "deploy:check": "node scripts/check-deployment.js"
   },
   "keywords": [
     "stacks",
@@ -21,20 +24,25 @@
   "author": "Adekunle Bamz",
   "license": "MIT",
   "dependencies": {
-    "@stacks/connect": "^7.0.0",
-    "@stacks/transactions": "^4.0.0",
-    "@stacks/blockchain-api-client": "^2.0.0",
     "@stacks/auth": "^3.0.0",
+    "@stacks/blockchain-api-client": "^2.0.0",
+    "@stacks/connect": "^7.0.0",
+    "@stacks/connect-react": "^23.1.4",
+    "@stacks/network": "^7.3.1",
+    "@stacks/transactions": "^4.0.0",
+    "@stacks/wallet-sdk": "^7.2.0",
+    "@wagmi/core": "^2.2.2",
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "dotenv": "^17.2.3",
+    "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-router-dom": "^6.20.1",
-    "wagmi": "^2.2.2",
-    "@wagmi/core": "^2.2.2",
+    "tailwind-merge": "^2.0.0",
     "viem": "^2.0.0",
-    "axios": "^1.6.2",
-    "lucide-react": "^0.294.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0"
+    "wagmi": "^2.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
