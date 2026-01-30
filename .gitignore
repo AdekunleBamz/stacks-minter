@@ -49,10 +49,7 @@ coverage/
 
 # Temporary folders
 tmp/
-temp/wallets/
+temp/
 
-# Internal files
+# Internal testing tools (wallets, minting scripts)
 .internal/
-.internal/wallets/
-*.json
-settings/Mainnet.toml
