@@ -160,3 +160,20 @@ export function validateImageFile(file, maxSizeMb = 10) {
 export function hasSufficientBalance(balance, required) {
   return Number(balance) >= Number(required);
 }
+
+// NFT-specific validation
+export const isValidNFTName = (name) => {
+  if (!name || typeof name !== 'string') return false
+  return name.length >= 1 && name.length <= 100
+}
+
+export const isValidNFTDescription = (desc) => {
+  if (!desc || typeof desc !== 'string') return true // optional
+  return desc.length <= 500
+}
+
+export const isValidRoyalty = (royalty) => {
+  if (royalty === null || royalty === undefined) return true
+  const num = parseFloat(royalty)
+  return !isNaN(num) && num >= 0 && num <= 100
+}
