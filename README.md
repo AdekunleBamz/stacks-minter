@@ -1,5 +1,5 @@
 # Stacks Minter
 
-NFT minter on Stacks.
+A Clarity smart contract project.
 
 npm install
