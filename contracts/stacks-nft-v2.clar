@@ -148,3 +148,12 @@
     (stx-transfer? amount (var-get contract-owner) tx-sender)
   )
 )
+
+;; Set collection name
+(define-public (set-collection-name (new-name (string-ascii 64)))
+  (begin
+    (asserts! (is-eq tx-sender (var-get contract-owner)) ERR-NOT-OWNER)
+    (var-set collection-name new-name)
+    (ok true)
+  )
+)
