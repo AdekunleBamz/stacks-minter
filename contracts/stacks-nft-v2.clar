@@ -23,6 +23,11 @@
 (define-constant ERR-NOT-AUTHORIZED (err u104))
 (define-constant ERR-PAUSED (err u105))
 (define-constant ERR-TRANSFER-FAILED (err u106))
+(define-constant ERR-INVALID-PARAM (err u107))
+(define-constant ERR-ZERO-ADDRESS (err u108))
+
+;; Events for tracking
+(define-data-var total-fees-collected uint u0)
 
 ;; SIP-009 NFT trait implementation
 (impl-trait 'SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.nft-trait.nft-trait)
@@ -81,6 +86,8 @@
     (asserts! (< current-supply (var-get max-supply)) ERR-MAX-SUPPLY-REACHED)
     ;; Transfer payment to contract owner
     (try! (stx-transfer? price tx-sender owner))
+    ;; Track fees collected
+    (var-set total-fees-collected (+ (var-get total-fees-collected) price))
     ;; Mint the NFT
     (try! (nft-mint? stacks-nft new-token-id tx-sender))
     ;; Update supply
@@ -125,3 +132,19 @@
     (asserts! (is-eq tx-sender (var-get contract-owner)) ERR-NOT-OWNER)
     (var-set contract-owner new-owner)
     (ok true)))
+
+;; Utility functions
+(define-read-only (get-remaining-supply)
+  (ok (- (var-get max-supply) (var-get total-supply))))
+
+(define-read-only (get-total-fees-collected)
+  (ok (var-get total-fees-collected)))
+
+;; Withdraw accumulated fees (owner only)
+(define-public (withdraw-fees (amount uint))
+  (begin
+    (asserts! (is-eq tx-sender (var-get contract-owner)) ERR-NOT-OWNER)
+    (var-set total-fees-collected (- (var-get total-fees-collected) amount))
+    (stx-transfer? amount (var-get contract-owner) tx-sender)
+  )
+)
